@@ -10,6 +10,7 @@ export default function FormFinanceiro(props) {
   const [tipoRegistro, setTipoRegistro] = useState("");
 
   
+  
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
