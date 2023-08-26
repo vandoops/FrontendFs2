@@ -20,11 +20,11 @@ export default function Menu(props) {
                 <LinkContainer to="/funcao">
                   <NavDropdown.Item>Tipo de movimentação</NavDropdown.Item>
                 </LinkContainer>
-                <NavDropdown.Divider />
                 
                 
+            
                 
-                <NavDropdown.Divider />
+                
                 <LinkContainer to="/financas">
                   <NavDropdown.Item>Financeiro</NavDropdown.Item>
                 </LinkContainer>
