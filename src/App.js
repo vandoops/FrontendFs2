@@ -10,7 +10,7 @@ function App() {
     <div >
       <BrowserRouter>
         <Routes>
-          <Route path="/funcao" element={<TelaCadastrofuncao/>}/>
+          <Route path="/tipomovimentacao" element={<TelaCadastrofuncao/>}/>
           <Route path="/financas" element={<TelaCadastroFinanceiro/>}/>
           <Route path="/" element={<TelaMenu/>}/>
           <Route path="*" element={<Tela404/>} />
