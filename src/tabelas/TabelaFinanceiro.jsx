@@ -18,7 +18,7 @@ export default function TabelaFinanceiro(props) {
   const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
-    fetch(urlBase + "/financas", { method: "GET" })
+    fetch("https://129.146.68.51/aluno13-pfsii/financas", { method: "GET" })
       .then((resposta) => resposta.json())
       .then((listaFinanceiros) => {
         if (Array.isArray(listaFinanceiros)) {
