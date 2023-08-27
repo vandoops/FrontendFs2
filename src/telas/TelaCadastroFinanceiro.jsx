@@ -23,7 +23,7 @@ export default function TelaCadastroFinanceiro(props) {
     entrada: "",
     valor: 0,
     datadep: "",
-    tipodep: "",
+    idMovimentacao: "",
   });
 
 

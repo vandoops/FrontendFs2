@@ -121,7 +121,7 @@ export default function TabelaFinanceiro(props) {
                   </td>
                   <td>R$ {Financeiro.valor}</td>
                   <td>{moment(Financeiro.datadep).format('DD/MM/YYYY')}</td>
-                  <td>{Financeiro.tipodep}</td>
+                  <td>{Financeiro.idMovimentacao}</td>
                   <td>
                     <Button
                       onClick={() => {
