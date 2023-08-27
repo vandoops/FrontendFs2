@@ -3,7 +3,7 @@ import FormFinanceiro from "../formularios/FormFinanceiro";
 import TabelaFinanceiro from "../tabelas/TabelaFinanceiro";
 import { useState, useEffect, useCallback } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 import Card from 'react-bootstrap/Card';
 import { BsBank } from "react-icons/bs";
 import {

@@ -9,8 +9,8 @@ export default function FormFinanceiro(props) {
   const [Financeiro, setFinanceiro] = useState(props.Financeiro);
   const [tipoRegistro, setTipoRegistro] = useState("");
 
-  
-  
+  const [movimentacoes, setmovimentacoes] = useState([]);
+
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -106,9 +106,26 @@ export default function FormFinanceiro(props) {
     evento.stopPropagation();
   }
 
+
+
+  useEffect(() => {
+    fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao", {
+      method: "GET"
+    })
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        if (Array.isArray(dados)) {
+          setmovimentacoes(dados);
+        }
+      })
+      .catch((erro) => {
+        console.error("Erro ao obter os tipos de movimentação:", erro);
+      });
+  }, []);
+
   return (
     <>
-      <Form 
+      <Form
         className="shadow-lg p-3 mt-4 bg-white rounded"
         noValidate
         validated={validado}
@@ -159,20 +176,23 @@ export default function FormFinanceiro(props) {
             <Form.Group as={Col} md="8">
               <Form.Label>Movimentação:</Form.Label>
               <Form.Select
-              type="text"
-              placeholder="Tipo de Movimentação"
-              value={Financeiro.tipodep}
-              id="tipodep"
-              onChange={manipularMudanca}
-              required>
-              <option value="">Selecione</option>
-              <option value="Pix">Pix</option>
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Dinheiro">Cartão Debito</option>
-              <option value="Dinheiro">Cartão Crédito</option>
-              <option value="Dinheiro">Cheque</option>
-            </Form.Select>
-              
+                type="text"
+                placeholder="Tipo de Movimentação"
+                //value={Financeiro.tipodep}
+                id="tipodep"
+                onChange={manipularMudanca}
+                required>
+                
+                <option value="">Selecione</option>
+                {movimentacoes.map((movimentacao) => (
+                  <option key={movimentacao.idMovimentacao} value={movimentacao.idMovimentacao} >
+                    {movimentacao.tipoMovimentacao}
+                  </option>
+                ))}
+
+                
+              </Form.Select>
+
               <Form.Control.Feedback type="invalid">
                 Digite o tipo de Movimentação !
               </Form.Control.Feedback>
