@@ -17,14 +17,10 @@ export default function Menu(props) {
             <NavDropdown title="Cadastros" id="basic-nav-dropdown">
               <div>
                 
-                <LinkContainer to="/funcao">
+                <LinkContainer to="/tipomovimentacao">
                   <NavDropdown.Item>Tipo de movimentação</NavDropdown.Item>
                 </LinkContainer>
-                
-                
-            
-                
-                
+
                 <LinkContainer to="/financas">
                   <NavDropdown.Item>Financeiro</NavDropdown.Item>
                 </LinkContainer>

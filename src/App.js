@@ -1,4 +1,4 @@
-import TelaCadastrofuncao from "./telas/TelaCadastroFuncao.jsx";
+import TelaCadastroMovimentacao from "./telas/TelaCadastroMovimentacao.jsx";
 import TelaCadastroFinanceiro from "./telas/TelaCadastroFinanceiro.jsx";
 import TelaMenu from "./telas/TelaMenu";
 import Tela404 from "./telas/Tela404";
@@ -10,7 +10,7 @@ function App() {
     <div >
       <BrowserRouter>
         <Routes>
-          <Route path="/tipomovimentacao" element={<TelaCadastrofuncao/>}/>
+          <Route path="/tipomovimentacao" element={<TelaCadastroMovimentacao/>}/>
           <Route path="/financas" element={<TelaCadastroFinanceiro/>}/>
           <Route path="/" element={<TelaMenu/>}/>
           <Route path="*" element={<Tela404/>} />
