@@ -5,7 +5,7 @@ export default function TabelaTipoMovimentacao(props) {
 
     function filtrarMovimentacao(e) {
         const termoBusca = e.currentTarget.value;
-        fetch(urlBase + "/tipomovimentacao", { method: "GET" })
+        fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao", { method: "GET" })
             .then((resposta) => resposta.json())
             .then((listaMovimentacao) => {
                 if (Array.isArray(listaMovimentacao)) {
