@@ -106,8 +106,6 @@ export default function FormFinanceiro(props) {
     evento.stopPropagation();
   }
 
-
-
   useEffect(() => {
     fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao", {
       method: "GET"

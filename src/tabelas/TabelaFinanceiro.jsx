@@ -108,10 +108,14 @@ export default function TabelaFinanceiro(props) {
             </tr>
           </thead>
           <tbody className="text-center">
-            {filteredData.map((Financeiro) => {
-              return (
+          {filteredData.map((Financeiro) => {
+            
+            const tipoMovimentacao = movimentacoes.find(mov => mov.idMovimentacao === Financeiro.tipodep);
+              
+            return (
                 <tr key={Financeiro.id_financeiro}>
                   <td>{Financeiro.id_financeiro}</td>
+                  <td>{tipoMovimentacao ? tipoMovimentacao.tipoMovimentacao : 'Não definido'}</td>
                   <td className="text-center">
                     {Financeiro.saida ? (
                       <FaRegArrowAltCircleDown color="red" />
