@@ -5,7 +5,7 @@ export default function TabelaTipoMovimentacao(props) {
 
     function filtrarMovimentacao(e) {
         const termoBusca = e.currentTarget.value;
-        fetch(urlBase + "/movimentacao", { method: "GET" })
+        fetch(urlBase + "/tipomovimentacao", { method: "GET" })
             .then((resposta) => resposta.json())
             .then((listaMovimentacao) => {
                 if (Array.isArray(listaMovimentacao)) {

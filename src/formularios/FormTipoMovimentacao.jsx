@@ -17,7 +17,7 @@ export default function FormTipoMovimentacao(props) {
         const form = evento.currentTarget;
         if (form.checkValidity()) {
             if (!props.atualizando) {
-                fetch(urlBase + "/movimentacao", {
+                fetch(urlBase + "/tipomovimentacao", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export default function FormTipoMovimentacao(props) {
                         window.alert("Erro ao executar a requisição: " + erro.message);
                     });
             } else {
-                fetch(urlBase + "/movimentacao", {
+                fetch(urlBase + "/tipomovimentacao", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
