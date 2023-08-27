@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Table, Row } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -110,7 +110,7 @@ export default function TabelaFinanceiro(props) {
           <tbody className="text-center">
           {filteredData.map((Financeiro) => {
             
-            const tipoMovimentacao = movimentacoes.find(mov => mov.idMovimentacao === Financeiro.tipodep);
+            const tipoMovimentacao = props.movimentacoes.find(mov => mov.idMovimentacao === Financeiro.tipodep);
               
             return (
                 <tr key={Financeiro.id_financeiro}>
