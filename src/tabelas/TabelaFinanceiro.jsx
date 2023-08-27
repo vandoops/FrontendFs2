@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Container, Table, Row } from "react-bootstrap";
-//import { urlBase } from "../utilitarios/definicoes";
+import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -108,14 +108,10 @@ export default function TabelaFinanceiro(props) {
             </tr>
           </thead>
           <tbody className="text-center">
-          {filteredData.map((Financeiro) => {
-            
-            const tipoMovimentacao = props.movimentacoes.find(mov => mov.idMovimentacao === Financeiro.tipodep);
-              
-            return (
+            {filteredData.map((Financeiro) => {
+              return (
                 <tr key={Financeiro.id_financeiro}>
                   <td>{Financeiro.id_financeiro}</td>
-                  <td>{tipoMovimentacao ? tipoMovimentacao.tipoMovimentacao : 'Não definido'}</td>
                   <td className="text-center">
                     {Financeiro.saida ? (
                       <FaRegArrowAltCircleDown color="red" />
