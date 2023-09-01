@@ -3,7 +3,7 @@ import FormTipoMovimentacao from "../formularios/FormTipoMovimentacao";
 import TabelaTipoMovimentacao from "../tabelas/TabelaTipoMovimentacao";
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 
 export default function TelaCadastroMovimentacao(props) {
     const [exibirTabela, setExibirTabela] = useState(true);
