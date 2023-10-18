@@ -1,7 +1,7 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import InputMask from "react-input-mask";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 
 
@@ -29,7 +29,7 @@ export default function FormPessoa(props) {
     const form = evento.currentTarget;
     if (form.checkValidity()) {
       if (!props.atualizando) {
-        fetch(urlBase + "/pessoa", {
+        fetch("https://129.146.68.51/aluno13-pfsii/pessoa", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -55,7 +55,7 @@ export default function FormPessoa(props) {
           });
       } else {
         debugger;
-        fetch(urlBase + "/pessoa", {
+        fetch("https://129.146.68.51/aluno13-pfsii/pessoa", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
@@ -90,7 +90,7 @@ export default function FormPessoa(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/funcao", {
+    fetch("https://129.146.68.51/aluno13-pfsii/funcao", {
       method: "GET"
     })
       .then((resposta) => resposta.json())

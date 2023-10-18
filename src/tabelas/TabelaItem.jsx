@@ -1,10 +1,10 @@
 import { Button, Container, Table, Form, Row } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+// import { urlBase } from "../utilitarios/definicoes";
 
 export default function TabelaItem(props) {
   function filtarItens(e) {
     const termoBusca = e.currentTarget.value;
-    fetch(urlBase + "/item", { method: "GET" })
+    fetch("https://129.146.68.51/aluno13-pfsii/item", { method: "GET" })
       .then((resposta) => {
         return resposta.json();
       })

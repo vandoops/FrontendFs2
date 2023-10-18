@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 
 export default function FormDoacao(props) {
   const [validado, setValidado] = useState(false);
@@ -48,7 +48,7 @@ export default function FormDoacao(props) {
       };
 
       if (!props.atualizando) {
-        fetch(urlBase + "/doacao", {
+        fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function FormDoacao(props) {
             window.alert("Erro ao executar a requisição: " + erro.message);
           });
       } else {
-        fetch(urlBase + "/doacao", {
+        fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default function FormDoacao(props) {
     evento.stopPropagation();
   }
   useEffect(() => {
-    fetch(urlBase + "/pessoa", {
+    fetch("https://129.146.68.51/aluno13-pfsii/pessoa", {
       method: "GET",
     })
       .then((resposta) => resposta.json())
@@ -116,7 +116,7 @@ export default function FormDoacao(props) {
         console.error("Erro ao obter a lista de pessoas:", erro);
       });
 
-    fetch(urlBase + "/item", {
+    fetch("https://129.146.68.51/aluno13-pfsii/item", {
       method: "GET",
     })
       .then((resposta) => resposta.json())

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+// import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from "react-icons/fa";
@@ -11,7 +11,7 @@ export default function TabelaFinanceiro(props) {
   function Pesquisar(e) {
     const termoBusca = e.currentTarget.value;
     console.log(e)
-    fetch(urlBase + "/financas", { method: "GET" })
+    fetch("https://129.146.68.51/aluno13-pfsii/financas", { method: "GET" })
       .then((resposta) => resposta.json())
       .then((listaFinanceiros) => {
         if (Array.isArray(listaFinanceiros)) {

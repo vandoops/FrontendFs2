@@ -3,7 +3,7 @@ import FormFinanceiro from "../formularios/FormFinanceiro";
 import TabelaFinanceiro from "../tabelas/TabelaFinanceiro";
 import { useState, useEffect, useCallback } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 import Card from 'react-bootstrap/Card';
 import { BsBank } from "react-icons/bs";
 import {
@@ -75,7 +75,7 @@ export default function TelaCadastroFinanceiro(props) {
   }
 
   function apagarFinanceiro(Financeiro) {
-    fetch(urlBase + "/financas", {
+    fetch("https://129.146.68.51/aluno13-pfsii/financas", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(Financeiro),
@@ -97,7 +97,7 @@ export default function TelaCadastroFinanceiro(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/financas",  {
+    fetch("https://129.146.68.51/aluno13-pfsii/financas",  {
       method: "GET",
     })
       .then((resposta) => resposta.json())

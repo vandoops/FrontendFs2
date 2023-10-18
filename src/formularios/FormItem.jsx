@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+// import { urlBase } from "../utilitarios/definicoes";
 
 export default function FormItem(props) {
   const [validado, setValidado] = useState(false);
@@ -19,7 +19,7 @@ export default function FormItem(props) {
     if (form.checkValidity()) {
       if (!props.atualizando) {
         // Lógica para criar um novo item
-        fetch(urlBase + "/item", {
+        fetch("https://129.146.68.51/aluno13-pfsii/item", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export default function FormItem(props) {
           });
       } else {
         // Lógica para atualizar um item existente
-        fetch(urlBase + "/item", {
+        fetch("https://129.146.68.51/aluno13-pfsii/item", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

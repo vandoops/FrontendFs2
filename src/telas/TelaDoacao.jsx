@@ -3,7 +3,7 @@ import FormDoacao from "../formularios/FormDoacao"; // Importe o componente de f
 import TabelaDoacao from "../tabelas/TabelaDoacao"; // Importe o componente de tabela de doações
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+// import { urlBase } from "../utilitarios/definicoes";
 
 export default function TelaCadastroDoacao(props) {
   const [exibirTabela, setExibirTabela] = useState(true);
@@ -24,7 +24,7 @@ export default function TelaCadastroDoacao(props) {
   }
 
   function apagarDoacao(doacao) {
-    fetch(urlBase + "/doacao", {
+    fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(doacao),
@@ -46,7 +46,7 @@ export default function TelaCadastroDoacao(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/doacao", {
+    fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
       method: "GET",
     })
       .then((resposta) => {

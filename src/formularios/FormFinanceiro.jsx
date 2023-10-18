@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+//import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 
 export default function FormFinanceiro(props) {
@@ -46,7 +46,7 @@ export default function FormFinanceiro(props) {
       dadosParaEnviar.datadep = dataFormatada;
 
       if (!props.atualizando) {
-        fetch(urlBase + "/financas", {
+        fetch("https://129.146.68.51/aluno13-pfsii/financas", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function FormFinanceiro(props) {
             window.alert("Erro ao executar a requisição: " + erro.message);
           });
       } else {
-        fetch(urlBase + "/financas", {
+        fetch("https://129.146.68.51/aluno13-pfsii/financas", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +102,7 @@ export default function FormFinanceiro(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/tipomovimentacao", {
+    fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao", {
       method: "GET",
     })
       .then((resposta) => resposta.json())

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Container, Table, Form, Row } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+// import { urlBase } from "../utilitarios/definicoes";
 
 export default function TabelaDoacao(props) {
   const [nomes, setNomes] = useState({});
@@ -25,7 +25,7 @@ export default function TabelaDoacao(props) {
 
   function filtrarDoacao(e) {
     const termoBusca = e.currentTarget.value;
-    fetch(urlBase + "/doacao", { method: "GET" })
+    fetch("https://129.146.68.51/aluno13-pfsii/doacao", { method: "GET" })
       .then((resposta) => {
         return resposta.json();
       })

@@ -3,7 +3,7 @@ import FormPessoa from "../formularios/FormPessoa";
 import TabelaPessoa from "../tabelas/TabelaPessoa";
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from '../utilitarios/definicoes'
+// import { urlBase } from '../utilitarios/definicoes'
 
 export default function TelaCadPessoa(props) {
   const [exibirTabela, setExibirTabela] = useState(true);
@@ -34,7 +34,7 @@ export default function TelaCadPessoa(props) {
   }
 
   function apagarPessoa(pessoa) {
-    fetch(urlBase + "/pessoa", {
+    fetch("https://129.146.68.51/aluno13-pfsii/pessoa", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pessoa),
@@ -56,7 +56,7 @@ export default function TelaCadPessoa(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/pessoa", {
+    fetch("https://129.146.68.51/aluno13-pfsii/pessoa", {
       method: "GET"
     }).then((resposta) => {
       return resposta.json();

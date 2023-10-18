@@ -3,9 +3,7 @@ import FormTipoMovimentacao from "../formularios/FormTipoMovimentacao";
 import TabelaTipoMovimentacao from "../tabelas/TabelaTipoMovimentacao";
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
-
-
+// import { urlBase } from "../utilitarios/definicoes";
 
 export default function TelaCadastroMovimentacao(props) {
     const [exibirTabela, setExibirTabela] = useState(true);
@@ -24,7 +22,7 @@ export default function TelaCadastroMovimentacao(props) {
     }
 
     function excluirMovimentacao(movimentacao) {
-        fetch(urlBase + "/tipomovimentacao",  {
+        fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao",  {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(movimentacao),
@@ -46,7 +44,7 @@ export default function TelaCadastroMovimentacao(props) {
     }
 
     useEffect(() => {
-        fetch(urlBase + "/tipomovimentacao",  {
+        fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao",  {
             method: "GET"
         }).then((resposta) => {
             return resposta.json();

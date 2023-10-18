@@ -3,7 +3,7 @@ import FormItem from "../formularios/FormItem"; // Importe o componente de formu
 import TabelaItem from "../tabelas/TabelaItem"; // Importe o componente de tabela de itens
 import { useState, useEffect } from "react";
 import { Alert, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+// import { urlBase } from "../utilitarios/definicoes";
 
 export default function TelaCadastroItem(props) {
   const [exibirTabela, setExibirTabela] = useState(true);
@@ -22,7 +22,7 @@ export default function TelaCadastroItem(props) {
   }
 
   function apagarItem(item) {
-    fetch(urlBase + "/item", {
+    fetch("https://129.146.68.51/aluno13-pfsii/item", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(item),
@@ -44,7 +44,7 @@ export default function TelaCadastroItem(props) {
   }
 
   useEffect(() => {
-    fetch(urlBase + "/item", {
+    fetch("https://129.146.68.51/aluno13-pfsii/item", {
       method: "GET",
     })
       .then((resposta) => {
