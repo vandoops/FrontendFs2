@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Table,Form, Row } from "react-bootstrap";
+import { Button, Container, Table, Form, Row, Col } from "react-bootstrap";
 import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,7 +8,7 @@ import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from "react-icons/fa";
 
 export default function TabelaFinanceiro(props) {
 
-  function Pesquisar(e){
+  function Pesquisar(e) {
     const termoBusca = e.currentTarget.value;
     console.log(e)
     fetch(urlBase + "/financas", { method: "GET" })
@@ -28,18 +28,28 @@ export default function TabelaFinanceiro(props) {
 
       <Container>
         <Row className="col-12">
-          <div className="d-flex my-3 justify-content-start">
-          <Row className="col-4">
-          <Form.Control
-            className="my-2"
-            type="text"
-            placeholder="Pesquisar..."
-            id="termoBusca"
-            onChange={Pesquisar}
-          />
-        </Row>
-            
-          </div>
+          <Col>
+            <div className="d-flex my-3 justify-content-between align-items-center">
+              <Row className="col-4">
+                <Form.Control
+                  className="my-2"
+                  type="text"
+                  placeholder="Pesquisar..."
+                  id="termoBusca"
+                  onChange={Pesquisar}
+                />
+              </Row>
+              <Button
+                variant="btn btn-outline-success"
+                className="mt-3"
+                onClick={() => {
+                  props.exibirTabela(false);
+                }}
+              >
+                Cadastrar
+              </Button>
+            </div>
+          </Col>
         </Row>
       </Container>
       <div className="table-responsive">
@@ -117,17 +127,7 @@ export default function TabelaFinanceiro(props) {
         </Table>
 
       </div>
-      <div className="d-flex justify-content-end mb-5">
-        <Button
-          variant="btn btn-outline-success"
-          className="mt-3"
-          onClick={() => {
-            props.exibirTabela(false);
-          }}
-        >
-          Cadastrar
-        </Button>
-      </div>
+
     </Container>
   );
 }

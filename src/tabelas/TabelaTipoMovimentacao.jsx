@@ -1,11 +1,11 @@
 import { Button, Container, Table, Form, Row } from "react-bootstrap";
-//import { urlBase } from "../utilitarios/definicoes";
+import { urlBase } from "../utilitarios/definicoes";
 
 export default function TabelaTipoMovimentacao(props) {
 
     function filtrarMovimentacao(e) {
         const termoBusca = e.currentTarget.value;
-        fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao", { method: "GET" })
+        fetch(urlBase + "/tipomovimentacao", { method: "GET" })
             .then((resposta) => resposta.json())
             .then((listaMovimentacao) => {
                 if (Array.isArray(listaMovimentacao)) {

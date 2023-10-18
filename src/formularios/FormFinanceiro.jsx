@@ -1,16 +1,13 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
-//import { urlBase } from "../utilitarios/definicoes";
+import { urlBase } from "../utilitarios/definicoes";
 import moment from "moment";
-
 
 export default function FormFinanceiro(props) {
   const [validado, setValidado] = useState(false);
   const [Financeiro, setFinanceiro] = useState(props.Financeiro);
   const [tipoRegistro, setTipoRegistro] = useState("");
-
-  const [movimentacoes, setmovimentacoes] = useState([]);
-
+  const [movimentacoes, setMovimentacoes] = useState([]);
 
   function manipularMudanca(e) {
     const elemForm = e.currentTarget;
@@ -37,13 +34,11 @@ export default function FormFinanceiro(props) {
 
       if (tipoRegistro === "entrada") {
         dadosParaEnviar.entrada = Financeiro.entrada;
-        // Remover a propriedade "saida" para garantir que seja "null"
         delete dadosParaEnviar.saida;
       }
 
       if (tipoRegistro === "saida") {
         dadosParaEnviar.saida = Financeiro.saida;
-        // Remover a propriedade "entrada" para garantir que seja "null"
         delete dadosParaEnviar.entrada;
       }
 
@@ -51,7 +46,7 @@ export default function FormFinanceiro(props) {
       dadosParaEnviar.datadep = dataFormatada;
 
       if (!props.atualizando) {
-        fetch("https://129.146.68.51/aluno13-pfsii/financas", {
+        fetch(urlBase + "/financas", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -68,13 +63,13 @@ export default function FormFinanceiro(props) {
               props.exibirTabela(true);
               window.location.reload();
             }
-            window.alert(dados.mensagem); // Apenas exibe a propriedade "mensagem" da resposta
+            window.alert(dados.mensagem);
           })
           .catch((erro) => {
             window.alert("Erro ao executar a requisição: " + erro.message);
           });
       } else {
-        fetch("https://129.146.68.51/aluno13-pfsii/financas", {
+        fetch(urlBase + "/financas", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -92,7 +87,7 @@ export default function FormFinanceiro(props) {
               setFinanceiro(props.Financeiro);
               window.location.reload();
             }
-            window.alert(dados.mensagem); // Apenas exibe a propriedade "mensagem" da resposta
+            window.alert(dados.mensagem);
           })
           .catch((erro) => {
             window.alert("Erro ao executar a requisição: " + erro.message);
@@ -107,13 +102,13 @@ export default function FormFinanceiro(props) {
   }
 
   useEffect(() => {
-    fetch("https://129.146.68.51/aluno13-pfsii/tipomovimentacao", {
-      method: "GET"
+    fetch(urlBase + "/tipomovimentacao", {
+      method: "GET",
     })
       .then((resposta) => resposta.json())
       .then((dados) => {
         if (Array.isArray(dados)) {
-          setmovimentacoes(dados);
+          setMovimentacoes(dados);
         }
       })
       .catch((erro) => {
@@ -130,24 +125,6 @@ export default function FormFinanceiro(props) {
         onSubmit={manipulaSubmissao}
       >
         <Row>
-          <Col className="d-none">
-            <Form.Group as={Col} md="12">
-              <Form.Label>ID</Form.Label>
-              <Form.Control
-                className="hidden"
-                type="text"
-                placeholder="ID do Financeiro"
-                value={Financeiro.id_financeiro}
-                id="id_financeiro"
-                onChange={manipularMudanca}
-                required
-              />
-              <Form.Control.Feedback type="invalid">
-                Digite o ID deste Financeiro.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Col>
-
           <Col className="mt-4">
             <Form.Group as={Col} md="6">
               <Form.Check
@@ -170,32 +147,30 @@ export default function FormFinanceiro(props) {
               />
             </Form.Group>
           </Col>
+
           <Col>
             <Form.Group as={Col} md="8">
               <Form.Label>Movimentação:</Form.Label>
               <Form.Select
                 type="text"
                 placeholder="Tipo de Movimentação"
-                //value={Financeiro.tipodep}
                 id="tipodep"
                 onChange={manipularMudanca}
-                required>
-                
+                required
+              >
                 <option value="">Selecione</option>
                 {movimentacoes.map((movimentacao) => (
-                  <option key={movimentacao.idMovimentacao} value={movimentacao.idMovimentacao} >
+                  <option key={movimentacao.idMovimentacao} value={movimentacao.idMovimentacao}>
                     {movimentacao.tipoMovimentacao}
                   </option>
                 ))}
-
-                
               </Form.Select>
-
               <Form.Control.Feedback type="invalid">
-                Digite o tipo de Movimentação !
+                Digite o tipo de Movimentação!
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
+
           <Col>
             <Form.Group as={Col} md="12">
               <Form.Label>Valor:</Form.Label>
@@ -212,9 +187,10 @@ export default function FormFinanceiro(props) {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
+
           <Col>
             <Form.Group as={Col} md="12">
-              <Form.Label>Data de Depósito:</Form.Label>
+              <Form.Label>Data:</Form.Label>
               <Form.Control
                 type="date"
                 value={moment(Financeiro.datadep).format("YYYY-MM-DD")}
@@ -223,28 +199,28 @@ export default function FormFinanceiro(props) {
                 required
               />
               <Form.Control.Feedback type="invalid">
-                Digite a data de depósito ou de retirada !
+                Digite a data de depósito ou de retirada!
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
-
-          <div className="d-flex justify-content-end mb-1 mt-5">
-            <Button
-              style={{ marginRight: "5px" }}
-              variant="btn btn-outline-danger"
-              type="button"
-              className="mt-5"
-              onClick={() => {
-                props.exibirTabela(true);
-              }}
-            >
-              Voltar
-            </Button>{" "}
-            <Button className="mt-5" type="submit" variant="btn btn-outline-success">
-              {props.atualizando ? "Atualizar" : "Cadastrar"}
-            </Button>{" "}
-          </div>
         </Row>
+
+        <div className="d-flex justify-content-end mb-1 mt-5">
+          <Button
+            style={{ marginRight: "5px" }}
+            variant="btn btn-outline-danger"
+            type="button"
+            className="mt-5"
+            onClick={() => {
+              props.exibirTabela(true);
+            }}
+          >
+            Voltar
+          </Button>{" "}
+          <Button className="mt-5" type="submit" variant="btn btn-outline-success">
+            {props.atualizando ? "Atualizar" : "Cadastrar"}
+          </Button>{" "}
+        </div>
       </Form>
     </>
   );
