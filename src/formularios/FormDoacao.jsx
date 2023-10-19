@@ -19,6 +19,8 @@ export default function FormDoacao(props) {
     setDoacao({ ...Doacao, [id]: valor });
   }
 
+
+  
   function adicionarItemRelacionado(itemRelacionado) {
     const novoItemRelacionado = {
       idItem: itemRelacionado.idItem,
