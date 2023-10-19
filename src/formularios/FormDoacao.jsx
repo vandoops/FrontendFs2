@@ -40,68 +40,74 @@ export default function FormDoacao(props) {
 
   function manipulaSubmissao(evento) {
     const form = evento.currentTarget;
-    if (form.checkValidity() && Doacao.itensDoados.length > 0) {
+    if (form.checkValidity()) {
       const dadosParaEnviar = {
         pessoaDoadora: Doacao.pessoaDoadora,
-        itensDoados: Doacao.itensDoados, // Use o estado Doacao.itensDoados
+        itensDoados: Doacao.itensDoados,
         quantidade: Doacao.itensDoados.reduce((total, item) => total + item.quantidade, 0),
       };
 
-      if (!props.atualizando) {
-        fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dadosParaEnviar),
-        })
-          .then((resposta) => resposta.json())
-          .then((dados) => {
-            if (dados.status) {
-              props.setModoEdicao(false);
-              let novaLista = props.listaDoacao || [];
-              novaLista.push(Doacao);
-              props.setDoacao(novaLista);
-              props.exibirTabela(true);
-              window.location.reload();
-            }
-            window.alert(dados.mensagem);
+      if (Doacao.pessoaDoadora || Doacao.itensDoados.length > 0) {
+        if (!props.atualizando) {
+          fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dadosParaEnviar),
           })
-          .catch((erro) => {
-            window.alert("Erro ao executar a requisição: " + erro.message);
-          });
+            .then((resposta) => resposta.json())
+            .then((dados) => {
+              if (dados.status) {
+                props.setModoEdicao(false);
+                let novaLista = props.listaDoacao || [];
+                novaLista.push(Doacao);
+                props.setDoacao(novaLista);
+                props.exibirTabela(true);
+                window.location.reload();
+              }
+              window.alert(dados.mensagem);
+            })
+            .catch((erro) => {
+              window.alert("Erro ao executar a requisição: " + erro.message);
+            });
+        } else {
+          fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dadosParaEnviar),
+          })
+            .then((resposta) => resposta.json())
+            .then((dados) => {
+              if (dados.status) {
+                props.setModoEdicao(false);
+                let novaLista = props.listaDoacao || [];
+                novaLista.push(Doacao);
+                props.setdo(novaLista);
+                props.exibirTabela(true);
+                setDoacao(props.Doacao);
+                window.location.reload();
+              }
+              window.alert(dados.mensagem);
+            })
+            .catch((erro) => {
+              window.alert("Erro ao executar a requisição: " + erro.message);
+            });
+        }
+        setValidado(false);
       } else {
-        fetch("https://129.146.68.51/aluno13-pfsii/doacao", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dadosParaEnviar),
-        })
-          .then((resposta) => resposta.json())
-          .then((dados) => {
-            if (dados.status) {
-              props.setModoEdicao(false);
-              let novaLista = props.listaDoacao || [];
-              novaLista.push(Doacao);
-              props.setdo(novaLista);
-              props.exibirTabela(true);
-              setDoacao(props.Doacao);
-              window.location.reload();
-            }
-            window.alert(dados.mensagem);
-          })
-          .catch((erro) => {
-            window.alert("Erro ao executar a requisição: " + erro.message);
-          });
+        window.alert("Adicione pelo menos um item antes de submeter.");
+        setValidado(true);
       }
-      setValidado(false);
     } else {
       setValidado(true);
     }
     evento.preventDefault();
     evento.stopPropagation();
   }
+
   useEffect(() => {
     fetch("https://129.146.68.51/aluno13-pfsii/pessoa", {
       method: "GET",
