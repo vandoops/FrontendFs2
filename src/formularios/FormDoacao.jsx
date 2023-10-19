@@ -23,7 +23,7 @@ export default function FormDoacao(props) {
     const novoItemRelacionado = {
       idItem: itemRelacionado.idItem,
       nomeItem: itens.find((item) => item.idItem === parseInt(itemRelacionado.idItem, 10)).nomeItem,
-      quantidade: itemRelacionado.quantidade,
+      quantidade: parseInt(itemRelacionado.quantidade),
     };
   
     setDoacao({
