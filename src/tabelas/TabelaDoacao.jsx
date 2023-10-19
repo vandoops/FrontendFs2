@@ -26,6 +26,7 @@ export default function TabelaDoacao(props) {
   function filtrarDoacao(e) {
     const termoBusca = e.currentTarget.value;
     fetch("https://129.146.68.51/aluno13-pfsii/doacao", { method: "GET" })
+    
       .then((resposta) => {
         return resposta.json();
       })
@@ -59,7 +60,7 @@ export default function TabelaDoacao(props) {
             <th>ID</th>
             <th>Pessoa Doadora</th>
             <th>Item Doado</th>
-            <th>Quantidade</th>
+            
             <th>Ações</th>
           </tr>
         </thead>
@@ -69,8 +70,9 @@ export default function TabelaDoacao(props) {
               <tr key={doacao.idDoacao}>
                 <td>{doacao.idDoacao}</td>
                 <td>{nomes[doacao.pessoaDoadora] || doacao.pessoaDoadora}</td>
-                <td>{doacao.itensdoados}</td>
                 <td>{doacao.quantidade}</td>
+                
+                
                 <td>
                   <Button
                     onClick={() => {
