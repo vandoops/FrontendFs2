@@ -63,7 +63,7 @@ export default function FormDoacao(props) {
               novaLista.push(Doacao);
               props.setDoacao(novaLista);
               props.exibirTabela(true);
-              window.location.reload();
+              // window.location.reload();
             }
             window.alert(dados.mensagem);
           })
@@ -87,7 +87,7 @@ export default function FormDoacao(props) {
               props.setdo(novaLista);
               props.exibirTabela(true);
               setDoacao(props.Doacao);
-              window.location.reload();
+              // window.location.reload();
             }
             window.alert(dados.mensagem);
           })
