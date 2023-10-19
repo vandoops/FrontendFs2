@@ -20,7 +20,7 @@ export default function FormDoacao(props) {
   }
 
 
-  
+
   function adicionarItemRelacionado(itemRelacionado) {
     const novoItemRelacionado = {
       idItem: itemRelacionado.idItem,
@@ -66,7 +66,7 @@ export default function FormDoacao(props) {
                 novaLista.push(Doacao);
                 props.setDoacao(novaLista);
                 props.exibirTabela(true);
-                // window.location.reload();
+                window.location.reload();
               }
               window.alert(dados.mensagem);
             })
