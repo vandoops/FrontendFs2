@@ -122,6 +122,7 @@ export default function TabelaDoacao(props) {
             );
           })}
         </tbody>
+        
       </Table>
       {props.listaDoacao && props.listaDoacao.length === 0 && (
         <p className="text-center my-4">Nenhuma doação cadastrada.</p>
