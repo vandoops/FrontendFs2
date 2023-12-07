@@ -12,6 +12,9 @@ import {
 
 } from "react-icons/fa";
 
+
+
+
 export default function TelaCadastroFinanceiro(props) {
   const [exibirTabela, setExibirTabela] = useState(true);
   const [Financeiros, setFinanceiro] = useState([]);
